@@ -16,7 +16,13 @@ public class ToyBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        slide();
+        if (!takenByPlayer)
+        {
+            slide();
+        } else
+        {
+            positionOverPlayer();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -44,6 +50,7 @@ public class ToyBehaviour : MonoBehaviour {
     static float speed = 1.00f;
     int collidingObjects = 0;
     public bool playerInReach = false;
+    public bool takenByPlayer = false;
     
     void slide()
     {
@@ -51,5 +58,11 @@ public class ToyBehaviour : MonoBehaviour {
         {
             transform.Translate(Vector2.left * Time.deltaTime * speed);
         }
+    }
+
+    void positionOverPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        gameObject.transform.position = player.transform.position;
     }
 }
