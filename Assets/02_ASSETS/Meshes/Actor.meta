@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/02_ASSETS/Meshes/Actor.meta
 guid: 89c6e85f51ad62145bcb06c414be0fe0
 folderAsset: yes
 timeCreated: 1512233455
+=======
+guid: a2036bd7eebc7654fbf9e1afdf940c80
+folderAsset: yes
+timeCreated: 1512166262
+>>>>>>> eb74b94fb75e3c3f66ef80a6f1e7131c640f3faf:Assets/02_ASSETS/Meshes/Actor.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

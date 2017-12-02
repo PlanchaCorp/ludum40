@@ -49,14 +49,21 @@ public class PlayerBehavior : MonoBehaviour
     void tryTakingToy()
     {
         GameObject[] toys = GameObject.FindGameObjectsWithTag("toy");
+        ToyBehaviour toyBehaviour = null;
+        float minDistance = 0;
         foreach (GameObject toy in toys)
         {
-            ToyBehaviour toyBehaviour = toy.GetComponent<ToyBehaviour>();
-            if (toyBehaviour != null && toyBehaviour.playerInReach && !takingObject)
+            float distance = Mathf.Sqrt(Mathf.Pow(gameObject.transform.position.x - toy.gameObject.transform.position.x, 2) + Mathf.Pow(gameObject.transform.position.y - toy.gameObject.transform.position.y, 2));
+            if (toyBehaviour == null || distance < minDistance)
             {
-                toyBehaviour.takenByPlayer = true;
-                takingObject = true;
+                minDistance = distance;
+                toyBehaviour = toy.GetComponent<ToyBehaviour>();
             }
+        }
+        if (toyBehaviour != null && toyBehaviour.playerInReach && !takingObject)
+        {
+            toyBehaviour.takenByPlayer = true;
+            takingObject = true;
         }
     }
 }
