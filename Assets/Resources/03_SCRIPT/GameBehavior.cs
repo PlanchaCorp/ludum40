@@ -4,14 +4,29 @@ using UnityEngine;
 
 public class GameBehavior : MonoBehaviour {
 
-	// Use this for initialization
+    // Use this for initialization
+    public List<string> ToyList;
 	void Start () {
-        //GameObject toy = GameObject.Instantiate(Resources.Load("10_PREFABS/cadeau.prefab")) as GameObject;
-        //toy.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load("Assets/09_TEXTURE/croque");
-	}
+        ToyList = new List<string>();
+        ToyList.Add("BOITE_GROS");
+        ToyList.Add("BOITE_PETIT");
+        InvokeRepeating("CreateToy", 2.0f, 4.0f);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+      
+    }
+
+
+    void CreateToy()
+    {
+       int index =(int) Mathf.Floor( Random.Range(0, ToyList.Count));
+        
+
+        GameObject toy = GameObject.Instantiate(Resources.Load("10_PREFABS/croque"), this.transform.position, this.transform.rotation) as GameObject;
+        toy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/"+ ToyList[index]);
+
+    }
+
 }
