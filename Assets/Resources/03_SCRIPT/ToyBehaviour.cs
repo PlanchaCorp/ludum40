@@ -32,7 +32,7 @@ public class ToyBehaviour : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "toy")
+        if (collider.tag == "toy" || collider.tag == "wall")
         {
             collidingObjects++;
         } else if (collider.tag == "Player" || collider.tag == "PlayerHand")
