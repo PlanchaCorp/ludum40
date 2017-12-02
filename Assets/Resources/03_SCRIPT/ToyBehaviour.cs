@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 
 public class ToyBehaviour : MonoBehaviour {
+
+    public string title;
+    public string description;
+    public string size;
+
     public Sprite sprite;
     public string spriteName;
     public void SetTexture(string name)
