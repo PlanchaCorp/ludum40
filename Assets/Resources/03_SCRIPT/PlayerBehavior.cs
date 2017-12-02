@@ -60,7 +60,7 @@ public class PlayerBehavior : MonoBehaviour
                 toyBehaviour = toy.GetComponent<ToyBehaviour>();
             }
         }
-        if (toyBehaviour != null && toyBehaviour.playerInReach && !takingObject)
+        if (toyBehaviour != null && toyBehaviour.playerInReach > 0 && !takingObject)
         {
             toyBehaviour.takenByPlayer = true;
             takingObject = true;

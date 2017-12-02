@@ -30,9 +30,9 @@ public class ToyBehaviour : MonoBehaviour {
         if (collider.tag == "toy")
         {
             collidingObjects++;
-        } else if (collider.tag == "Player")
+        } else if (collider.tag == "Player" || collider.tag == "PlayerHand")
         {
-            playerInReach = true;
+            playerInReach++;
         }
     }
     void OnTriggerExit2D(Collider2D collider)
@@ -45,15 +45,15 @@ public class ToyBehaviour : MonoBehaviour {
         {
             collidingObjects++;
         }
-        else if (collider.tag == "Player")
+        else if (collider.tag == "Player" || collider.tag == "PlayerHand")
         {
-            playerInReach = false;
+            playerInReach--;
         }
     }
 
     static float speed = 1.00f;
     int collidingObjects = 0;
-    public bool playerInReach = false;
+    public int playerInReach = 0;
     public bool takenByPlayer = false;
     
     void slide()
