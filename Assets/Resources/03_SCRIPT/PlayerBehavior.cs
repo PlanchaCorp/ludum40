@@ -21,12 +21,16 @@ public class PlayerBehavior : MonoBehaviour
             if (!takingObject)
             {
                 tryTakingToy();
+            } else
+            {
+                tryPackingToy();
             }
         }
     }
     
     static float speed = 20.00f;
     bool takingObject = false;
+    GameObject carriedToy = null;
 
     void move()
     {
@@ -49,21 +53,43 @@ public class PlayerBehavior : MonoBehaviour
     void tryTakingToy()
     {
         GameObject[] toys = GameObject.FindGameObjectsWithTag("toy");
-        ToyBehaviour toyBehaviour = null;
+        carriedToy = null;
         float minDistance = 0;
         foreach (GameObject toy in toys)
         {
             float distance = Mathf.Sqrt(Mathf.Pow(gameObject.transform.position.x - toy.gameObject.transform.position.x, 2) + Mathf.Pow(gameObject.transform.position.y - toy.gameObject.transform.position.y, 2));
-            if (toyBehaviour == null || distance < minDistance)
+            if (carriedToy == null || distance < minDistance)
             {
                 minDistance = distance;
-                toyBehaviour = toy.GetComponent<ToyBehaviour>();
+                carriedToy = toy;
             }
         }
-        if (toyBehaviour != null && toyBehaviour.playerInReach > 0 && !takingObject)
+        if (carriedToy != null && !takingObject)
         {
-            toyBehaviour.takenByPlayer = true;
-            takingObject = true;
+            ToyBehaviour toyBehaviour = carriedToy.GetComponent<ToyBehaviour>();
+            if (toyBehaviour.playerInReach > 0)
+            {
+                toyBehaviour.takenByPlayer = true;
+                takingObject = true;
+            }
+        }
+    }
+
+    void tryPackingToy()
+    {
+        GameObject[] boxes = GameObject.FindGameObjectsWithTag("box");
+        foreach (GameObject box in boxes)
+        {
+            BoxBehavior boxBehavior = box.GetComponent<BoxBehavior>();
+            if (boxBehavior != null && boxBehavior.playerInReach)
+            {
+                if (takingObject)
+                {
+                    boxBehavior.closeOrOpenBox(true);
+                    takingObject = false;
+                    Destroy(carriedToy);
+                }
+            }
         }
     }
 }

@@ -49,7 +49,7 @@ public class ToyBehaviour : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "toy")
+        if (collider.tag == "toy" || collider.tag == "wall")
         {
             collidingObjects++;
         } else if (collider.tag == "Player" || collider.tag == "PlayerHand")
@@ -73,7 +73,7 @@ public class ToyBehaviour : MonoBehaviour {
         }
     }
 
-    static float speed = 1.00f;
+    static float speed = 1.50f;
     int collidingObjects = 0;
     public int playerInReach = 0;
     public bool takenByPlayer = false;

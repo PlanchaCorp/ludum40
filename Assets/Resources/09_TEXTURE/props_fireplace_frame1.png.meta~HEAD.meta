@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources/09_TEXTURE/props_fireplace_frame1.png.meta~HEAD.meta
 guid: 11153770482798d4b90c98ba8d0a4445
 timeCreated: 1512246444
+=======
+guid: fda225fc0aab88e4dac57f28d5f04ec1
+folderAsset: yes
+timeCreated: 1512252445
+>>>>>>> 98fd8e90589d07b782f5534a28ca07cf0f5d4415:Assets/02_ASSETS/Meshes/Actor/Annimation.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
