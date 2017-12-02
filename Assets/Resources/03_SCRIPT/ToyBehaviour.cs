@@ -1,27 +1,56 @@
 ﻿using UnityEngine;
 
 public class ToyBehaviour : MonoBehaviour {
+    public Sprite sprite;
+    public string spriteName;
+    public void SetTexture(string name)
+    {
+        sprite = (Sprite)Resources.Load(name);
+        this.GetComponent<SpriteRenderer>().sprite = sprite;
+    }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        slide();
+        if (!takenByPlayer)
+        {
+            slide();
+        } else
+        {
+            positionOverPlayer();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        collidingObjects++;
+        if (collider.tag == "toy" || collider.tag == "wall")
+        {
+            collidingObjects++;
+        } else if (collider.tag == "Player")
+        {
+            playerInReach = true;
+        }
     }
     void OnTriggerExit2D(Collider2D collider)
     {
-        collidingObjects--;
+        if (collider.tag == "toy" || collider.tag == "wall")
+        {
+            collidingObjects--;
+        }
+        else if (collider.tag == "Player")
+        {
+            playerInReach = false;
+        }
     }
 
     static float speed = 1.00f;
     int collidingObjects = 0;
+    public bool playerInReach = false;
+    public bool takenByPlayer = false;
     
     void slide()
     {
@@ -29,5 +58,11 @@ public class ToyBehaviour : MonoBehaviour {
         {
             transform.Translate(Vector2.left * Time.deltaTime * speed);
         }
+    }
+
+    void positionOverPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        gameObject.transform.position = player.transform.position;
     }
 }

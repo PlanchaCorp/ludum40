@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources/09_TEXTURE/croque.png.meta
 guid: a0ce9b323b989614c899e018703bba77
 timeCreated: 1512232255
+=======
+<<<<<<< HEAD
+guid: 67b7c9927b6092248922ef01f2aaf67a
+timeCreated: 1512224264
+=======
+guid: ff5563be2815aa1499dc10b9de3f515d
+timeCreated: 1512224063
+>>>>>>> 85fc58923657eb8c2f6c2b3f05a6bc08448f5161
+>>>>>>> d3a56e6dc232ac6df0ebea48976dab6e247b307e:Assets/09_TEXTURE/croque.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
