@@ -2,9 +2,7 @@
 
 public class ToyBehaviour : MonoBehaviour {
 
-    public string title;
-    public string description;
-    public string size;
+    public Toy toy;
 
     public Sprite sprite;
     public string spriteName;
@@ -13,14 +11,30 @@ public class ToyBehaviour : MonoBehaviour {
         sprite = (Sprite)Resources.Load(name);
         this.GetComponent<SpriteRenderer>().sprite = sprite;
     }
+    GameObject popInfo;
 
     // Use this for initialization
     void Start () {
+        popInfo = transform.Find("props_info").gameObject;
+        
+        popInfo.SetActive(false);
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnMouseOver()
+    {
+        popInfo.transform.Find("txt_title").gameObject.GetComponent<TextMesh>().text = toy.name;
+        popInfo.transform.Find("txt_size").gameObject.GetComponent < TextMesh>().text = toy.GetLabelSize();
+        popInfo.transform.Find("txt_description").gameObject.GetComponent<TextMesh>().text = toy.description;
+        popInfo.SetActive(true);
+    }
+    private void OnMouseExit()
+    {
+        popInfo.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (!takenByPlayer)
         {
             slide();
@@ -29,6 +43,9 @@ public class ToyBehaviour : MonoBehaviour {
             positionOverPlayer();
         }
     }
+    
+
+
 
     void OnTriggerEnter2D(Collider2D collider)
     {

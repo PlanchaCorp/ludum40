@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources/10_PREFABS/props_info.prefab.meta
+guid: fdf339aebb20e544fbebb24033214af8
+timeCreated: 1512246693
+=======
+guid: cfda9e3111206a74aa97b94268f905f2
+folderAsset: yes
+timeCreated: 1512252445
+>>>>>>> 98fd8e90589d07b782f5534a28ca07cf0f5d4415:Assets/02_ASSETS/Meshes/Actor/Materiels.meta
+licenseType: Free
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
