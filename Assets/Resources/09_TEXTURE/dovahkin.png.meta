@@ -1,21 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 37a6f4ba271687748a014c7c968317bd
-timeCreated: 1512239873
-=======
-<<<<<<< HEAD
-guid: 0d3e4e2621de2e9429f01bce7575bc4d
-timeCreated: 1512237636
-=======
-<<<<<<< HEAD
-guid: e2d3510403834a44a825ca936452dd14
-timeCreated: 1512237757
-=======
-guid: 505e505ab9d140f4d9e6732cf4e6916a
-timeCreated: 1512237598
->>>>>>> 869c2d64d6b8d161867482467ae084edec24980b
->>>>>>> d5fa23b18a5fe83a65eb883caba410a6ab7671a4
->>>>>>> 3c4c1db14aef68ad5df2634aa2f3e691812f8b04
+guid: 561df85458da48b45af0853bd2281c73
+timeCreated: 1512240380
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -72,28 +57,7 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-<<<<<<< HEAD
     maxTextureSize: 2048
-=======
-<<<<<<< HEAD
-    maxTextureSize: 2048
-=======
-<<<<<<< HEAD
-    maxTextureSize: 2048
-=======
-    maxTextureSize: 128
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Standalone
-    maxTextureSize: 128
->>>>>>> 869c2d64d6b8d161867482467ae084edec24980b
->>>>>>> d5fa23b18a5fe83a65eb883caba410a6ab7671a4
->>>>>>> 3c4c1db14aef68ad5df2634aa2f3e691812f8b04
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
