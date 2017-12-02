@@ -5,13 +5,14 @@ using UnityEngine;
 public class GameBehavior : MonoBehaviour {
 
     // Use this for initialization
-    public List<string> ToyList;
+    public List<Toy> ToyList;
 	void Start () {
-        ToyList = new List<string>();
-        ToyList.Add("toy_croq");
-        ToyList.Add("toy_horse");
-        ToyList.Add("props_phone");
-        ToyList.Add("toy_momysduck");
+        ToyList = new List<Toy>
+        {
+            new Toy("Croque monsieur","this sandwish is already bitted","small","toy_croq"),
+            new Toy("Wooden horse","fun toy !","big","toy_horse"),
+            new Toy("mommy's duck","how did this arrived here","","toy_momysduck")
+        };
         InvokeRepeating("CreateToy", 2.0f, 3.0f);
     }
 	
@@ -26,8 +27,12 @@ public class GameBehavior : MonoBehaviour {
        int index =(int) Mathf.Floor( Random.Range(0, ToyList.Count));
         
 
-        GameObject toy = GameObject.Instantiate(Resources.Load("10_PREFABS/croque"), this.transform.position, this.transform.rotation) as GameObject;
-        toy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/"+ ToyList[index]);
+        GameObject toyObject = GameObject.Instantiate(Resources.Load("10_PREFABS/croque"), this.transform.position, this.transform.rotation) as GameObject;
+        Toy toy = ToyList[index];
+        toyObject.GetComponent<ToyBehaviour>().name = toy.name;
+        toyObject.GetComponent<ToyBehaviour>().size = toy.size;
+        toyObject.GetComponent<ToyBehaviour>().description = toy.description;
+        toyObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/"+ toy.spriteName);
 
     }
 
