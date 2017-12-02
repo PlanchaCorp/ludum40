@@ -51,7 +51,7 @@ public class ToyBehaviour : MonoBehaviour {
         }
     }
 
-    static float speed = 1.00f;
+    static float speed = 1.50f;
     int collidingObjects = 0;
     public int playerInReach = 0;
     public bool takenByPlayer = false;
