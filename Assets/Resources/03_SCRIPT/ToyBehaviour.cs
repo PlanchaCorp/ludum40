@@ -27,7 +27,7 @@ public class ToyBehaviour : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "toy" || collider.tag == "wall")
+        if (collider.tag == "toy")
         {
             collidingObjects++;
         } else if (collider.tag == "Player")
@@ -37,9 +37,13 @@ public class ToyBehaviour : MonoBehaviour {
     }
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.tag == "toy" || collider.tag == "wall")
+        if (collider.tag == "toy")
         {
             collidingObjects--;
+        }
+        else if (collider.tag == "Conveyor")
+        {
+            collidingObjects++;
         }
         else if (collider.tag == "Player")
         {
