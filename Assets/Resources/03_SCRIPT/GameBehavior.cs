@@ -8,9 +8,11 @@ public class GameBehavior : MonoBehaviour {
     public List<string> ToyList;
 	void Start () {
         ToyList = new List<string>();
-        ToyList.Add("BOITE_GROS");
-        ToyList.Add("BOITE_PETIT");
-        InvokeRepeating("CreateToy", 2.0f, 4.0f);
+        ToyList.Add("toy_croq");
+        ToyList.Add("toy_horse");
+        ToyList.Add("props_phone");
+        ToyList.Add("toy_momysduck");
+        InvokeRepeating("CreateToy", 2.0f, 3.0f);
     }
 	
 	// Update is called once per frame
