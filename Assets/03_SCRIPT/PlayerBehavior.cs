@@ -4,19 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerBehavior : MonoBehaviour {
+public class PlayerBehavior : MonoBehaviour
+{
 
 	// Use this for initialization
 	void Start () {
 		
+            
 	}
 	
 	// Update is called once per frame
 	void Update () {
         move();
-	}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!takingObject)
+            {
+                tryTakingToy();
+            }
+        }
+    }
     
     static float speed = 8.00f;
+    bool takingObject = false;
 
     void move()
     {
@@ -33,6 +43,20 @@ public class PlayerBehavior : MonoBehaviour {
 
             Vector2 moveVector = new Vector2(moveHorizontal * deltaTime * speed, moveVertical * deltaTime * speed);
             gameObject.transform.Translate(moveVector, Space.World);
+        }
+    }
+
+    void tryTakingToy()
+    {
+        GameObject[] toys = GameObject.FindGameObjectsWithTag("toy");
+        foreach (GameObject toy in toys)
+        {
+            ToyBehaviour toyBehaviour = toy.GetComponent<ToyBehaviour>();
+            if (toyBehaviour != null && toyBehaviour.playerInReach && !takingObject)
+            {
+                Destroy(toy);
+                takingObject = true;
+            }
         }
     }
 }
