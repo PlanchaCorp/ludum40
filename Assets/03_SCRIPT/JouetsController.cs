@@ -25,7 +25,7 @@ public class JouetsController : MonoBehaviour {
 
     void FixedUpdate()
     {
-
+        
         GetComponent<Rigidbody2D>().velocity = movement;
     }
 }
