@@ -21,7 +21,10 @@ public class BoxBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (takenByPlayer)
+        {
+            positionOverPlayer();
+        }
 	}
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -39,9 +42,10 @@ public class BoxBehavior : MonoBehaviour {
         }
     }
 
-    public bool playerInReach = false;
     public int size = 0;
     public bool isClosed = false;
+    public bool playerInReach = false;
+    public bool takenByPlayer = false;
 
     public void closeOrOpenBox(bool closing)
     {
@@ -58,5 +62,12 @@ public class BoxBehavior : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/" + "props_box_big_" + boxState);
                 break;
         }
+        isClosed = closing;
+    }
+
+    void positionOverPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        gameObject.transform.position = new Vector3(player.transform.position.x + (player.transform.lossyScale.x/3), player.transform.position.y + (2*player.transform.lossyScale.y), -5);
     }
 }

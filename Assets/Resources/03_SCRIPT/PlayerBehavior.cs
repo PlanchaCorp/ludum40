@@ -21,10 +21,8 @@ public class PlayerBehavior : MonoBehaviour
             if (!takingObject)
             {
                 tryTakingToy();
-            } else
-            {
-                tryPackingToy();
             }
+            tryInteractingWithBox();
         }
     }
     
@@ -71,11 +69,14 @@ public class PlayerBehavior : MonoBehaviour
             {
                 toyBehaviour.takenByPlayer = true;
                 takingObject = true;
+            } else
+            {
+                carriedToy = null;
             }
         }
     }
 
-    void tryPackingToy()
+    void tryInteractingWithBox()
     {
         GameObject[] boxes = GameObject.FindGameObjectsWithTag("box");
         foreach (GameObject box in boxes)
@@ -83,11 +84,16 @@ public class PlayerBehavior : MonoBehaviour
             BoxBehavior boxBehavior = box.GetComponent<BoxBehavior>();
             if (boxBehavior != null && boxBehavior.playerInReach)
             {
-                if (takingObject)
+                if (!boxBehavior.isClosed && takingObject && carriedToy != null)
                 {
                     boxBehavior.closeOrOpenBox(true);
                     takingObject = false;
                     Destroy(carriedToy);
+                    carriedToy = null;
+                } else if (boxBehavior.isClosed && !takingObject)
+                {
+                    takingObject = true;
+                    boxBehavior.takenByPlayer = true;
                 }
             }
         }
