@@ -9,9 +9,9 @@ public class GameBehavior : MonoBehaviour {
 	void Start () {
         ToyList = new List<Toy>
         {
-            new Toy("Croque monsieur","this sandwish is already bitted","small","toy_croq"),
-            new Toy("Wooden horse","fun toy !","big","toy_horse"),
-            new Toy("mommy's duck","how did this arrived here","","toy_momysduck")
+            new Toy("Croque monsieur","this sandwish is already bitten",1,"toy_croq"),
+            new Toy("Wooden horse","fun toy !",3,"toy_horse"),
+            new Toy("mommy's duck","how did this arrived here",2,"toy_momysduck")
         };
         InvokeRepeating("CreateToy", 2.0f, 3.0f);
     }
@@ -29,9 +29,7 @@ public class GameBehavior : MonoBehaviour {
 
         GameObject toyObject = GameObject.Instantiate(Resources.Load("10_PREFABS/croque"), this.transform.position, this.transform.rotation) as GameObject;
         Toy toy = ToyList[index];
-        toyObject.GetComponent<ToyBehaviour>().name = toy.name;
-        toyObject.GetComponent<ToyBehaviour>().size = toy.size;
-        toyObject.GetComponent<ToyBehaviour>().description = toy.description;
+        toyObject.GetComponent<ToyBehaviour>().toy = toy;
         toyObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/"+ toy.spriteName);
 
     }
