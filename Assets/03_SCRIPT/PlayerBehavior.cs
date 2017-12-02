@@ -25,7 +25,7 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
     
-    static float speed = 8.00f;
+    static float speed = 20.00f;
     bool takingObject = false;
 
     void move()
@@ -54,7 +54,7 @@ public class PlayerBehavior : MonoBehaviour
             ToyBehaviour toyBehaviour = toy.GetComponent<ToyBehaviour>();
             if (toyBehaviour != null && toyBehaviour.playerInReach && !takingObject)
             {
-                Destroy(toy);
+                toyBehaviour.takenByPlayer = true;
                 takingObject = true;
             }
         }
