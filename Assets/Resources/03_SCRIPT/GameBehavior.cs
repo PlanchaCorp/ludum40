@@ -16,7 +16,7 @@ public class GameBehavior : MonoBehaviour {
             new Toy("mommy's duck","how did this arrived here",2,"toy_momysduck"),
             new Toy("Dovahkin","FUS ROH DAH",2,"dovahkin")
         };
-        InvokeRepeating("CreateToy", 0.0f, 3.5f);
+        InvokeRepeating("CreateToy", 0.0f, 2.5f);
     }
 	
 	// Update is called once per frame

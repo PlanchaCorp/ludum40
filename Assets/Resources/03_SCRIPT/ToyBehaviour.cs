@@ -115,7 +115,7 @@ public class ToyBehaviour : MonoBehaviour {
         }
     }
 
-    static float speed = 1.50f;
+    static float speed = 2.10f;
     int collidingObjects = 0;
     public int playerInReach = 0;
     public bool takenByPlayer = false;
@@ -124,19 +124,15 @@ public class ToyBehaviour : MonoBehaviour {
     void slide()
     {
         raycast = Physics2D.Raycast(this.transform.Find("raycastStart").gameObject.transform.position, Vector2.left, 1.3f);
-        
-             if (raycast.collider)
-        {
-            Debug.Log(raycast.collider);
-        }
-        if (raycast.collider.name == "wall" || raycast.collider.tag == "toy")
-        {
 
-        }
-        else
-        {
-            transform.Translate(Vector2.left * Time.deltaTime * speed);
-        }
+            if (raycast.collider != null && ( raycast.collider.name == "Wall" || raycast.collider.tag == "toy"))
+            {
+
+            } else
+            {
+                transform.Translate(Vector2.left * Time.deltaTime * speed);
+            }
+            
     }
 
     void positionOverPlayer()
