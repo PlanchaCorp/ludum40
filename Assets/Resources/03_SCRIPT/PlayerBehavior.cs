@@ -21,14 +21,19 @@ public class PlayerBehavior : MonoBehaviour
             if (!takingObject)
             {
                 tryTakingToy();
+            } else
+            {
+                tryFeedingSleigh();
             }
             tryInteractingWithBox();
+            tryRope();
         }
     }
     
     static float speed = 20.00f;
     bool takingObject = false;
     GameObject carriedToy = null;
+    GameObject carriedBox = null;
 
     void move()
     {
@@ -93,8 +98,33 @@ public class PlayerBehavior : MonoBehaviour
                 } else if (boxBehavior.isClosed && !takingObject)
                 {
                     takingObject = true;
+                    carriedBox = box;
                     boxBehavior.takenByPlayer = true;
                 }
+            }
+        }
+    }
+
+    void tryFeedingSleigh()
+    {
+        GameObject sleigh = GameObject.FindGameObjectWithTag("Sleigh");
+        ActionnableBehaviour sleighBehaviour = sleigh.GetComponent<ActionnableBehaviour>();
+        if (sleighBehaviour != null && sleighBehaviour.playerInReach && takingObject && carriedBox != null) {
+            takingObject = false;
+            Destroy(carriedBox);
+            carriedBox = null;
+        }
+    }
+
+    void tryRope()
+    {
+        GameObject rope = GameObject.FindGameObjectWithTag("Rope");
+        ActionnableBehaviour ropeBehaviour = rope.GetComponent<ActionnableBehaviour>();
+        if (ropeBehaviour != null && ropeBehaviour.playerInReach)
+        {
+            Debug.Log("Rope !");
+            if (GameObject.FindGameObjectsWithTag("box").Length == 0)
+            {
             }
         }
     }
