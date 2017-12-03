@@ -147,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155937911770760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.66, y: 0, z: 0}
+  m_LocalPosition: {x: -1.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4426795001128360}
@@ -186,7 +186,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338178319672700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.050117, y: 0.32025766, z: -1}
+  m_LocalPosition: {x: -28.7, y: 0.32025766, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4751486932917232}
@@ -427,9 +427,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   spriteName: 
+  displayInfoEnabled: 0
   playerInReach: 0
   takenByPlayer: 0
-  disappearing: 0
+  raycastLen: 0.9
 --- !u!212 &212479332335049600
 SpriteRenderer:
   m_ObjectHideFlags: 1

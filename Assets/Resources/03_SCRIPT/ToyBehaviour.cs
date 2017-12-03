@@ -119,11 +119,12 @@ public class ToyBehaviour : MonoBehaviour {
     int collidingObjects = 0;
     public int playerInReach = 0;
     public bool takenByPlayer = false;
+    public float raycastLen = 1.1f;
     public RaycastHit2D raycast;
     
     void slide()
     {
-        raycast = Physics2D.Raycast(this.transform.Find("raycastStart").gameObject.transform.position, Vector2.left, 1.3f);
+        raycast = Physics2D.Raycast(this.transform.Find("raycastStart").gameObject.transform.position, Vector2.left, raycastLen);
 
             if (raycast.collider != null && ( raycast.collider.name == "Wall" || raycast.collider.tag == "toy"))
             {
