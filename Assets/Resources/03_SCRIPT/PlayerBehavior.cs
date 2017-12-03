@@ -90,9 +90,10 @@ public class PlayerBehavior : MonoBehaviour
             BoxBehaviour boxBehavior = box.GetComponent<BoxBehaviour>();
             if (boxBehavior != null && boxBehavior.playerInReach)
             {
-                if (!boxBehavior.isClosed && takingObject && carriedToy != null)
+                if (!boxBehavior.isClosed && !boxBehavior.isClosing && takingObject && carriedToy != null)
                 {
-                    boxBehavior.closeOrOpenBox(true);
+                    boxBehavior.packBox();
+                    //boxBehavior.closeOrOpenBox(true);
                     takingObject = false;
                     Destroy(carriedToy);
                     carriedToy = null;
@@ -165,7 +166,6 @@ public class PlayerBehavior : MonoBehaviour
         ActionnableBehaviour fireBehaviour = fire.GetComponent<ActionnableBehaviour>();
         if (fireBehaviour != null && fireBehaviour.playerInReach)
         {
-            Debug.Log("in reach");
             if (carriedToy != null)
             {
                 Destroy(carriedToy);
