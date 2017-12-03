@@ -23,14 +23,18 @@ public class PlayerBehavior : MonoBehaviour
                 tryTakingToy();
             } else
             {
-                tryPackingToy();
+                tryFeedingSleigh();
+                tryThrowingToChimney();
             }
+            tryInteractingWithBox();
+            tryRope();
         }
     }
     
     static float speed = 20.00f;
     bool takingObject = false;
     GameObject carriedToy = null;
+    GameObject carriedBox = null;
 
     void move()
     {
@@ -71,24 +75,108 @@ public class PlayerBehavior : MonoBehaviour
             {
                 toyBehaviour.takenByPlayer = true;
                 takingObject = true;
+            } else
+            {
+                carriedToy = null;
             }
         }
     }
 
-    void tryPackingToy()
+    void tryInteractingWithBox()
     {
         GameObject[] boxes = GameObject.FindGameObjectsWithTag("box");
         foreach (GameObject box in boxes)
         {
-            BoxBehavior boxBehavior = box.GetComponent<BoxBehavior>();
+            BoxBehaviour boxBehavior = box.GetComponent<BoxBehaviour>();
             if (boxBehavior != null && boxBehavior.playerInReach)
             {
-                if (takingObject)
+                if (!boxBehavior.isClosed && takingObject && carriedToy != null)
                 {
                     boxBehavior.closeOrOpenBox(true);
                     takingObject = false;
                     Destroy(carriedToy);
+                    carriedToy = null;
+                } else if (boxBehavior.isClosed && !takingObject)
+                {
+                    takingObject = true;
+                    carriedBox = box;
+                    boxBehavior.takenByPlayer = true;
                 }
+            }
+        }
+    }
+
+    void tryFeedingSleigh()
+    {
+        GameObject sleigh = GameObject.FindGameObjectWithTag("Sleigh");
+        ActionnableBehaviour sleighBehaviour = sleigh.GetComponent<ActionnableBehaviour>();
+        if (sleighBehaviour != null && sleighBehaviour.playerInReach && takingObject && carriedBox != null) {
+            takingObject = false;
+            Destroy(carriedBox);
+            carriedBox = null;
+        }
+    }
+
+    void tryRope()
+    {
+        GameObject rope = GameObject.FindGameObjectWithTag("Rope");
+        ActionnableBehaviour ropeBehaviour = rope.GetComponent<ActionnableBehaviour>();
+        if (carriedBox == null && ropeBehaviour != null && ropeBehaviour.playerInReach)
+        {
+            bool smallBoxPresent = false, mediumBoxPresent = false, bigBoxPresent = false;
+            GameObject[] boxes = GameObject.FindGameObjectsWithTag("box");
+            foreach(GameObject box in boxes)
+            {
+                BoxBehaviour boxBehaviour = box.GetComponent<BoxBehaviour>();
+                if (boxBehaviour != null)
+                {
+                    switch (boxBehaviour.size)
+                    {
+                        case 1:
+                            smallBoxPresent = true;
+                            break;
+                        case 2:
+                            mediumBoxPresent = true;
+                            break;
+                        case 3:
+                            bigBoxPresent = true;
+                            break;
+                    }
+                }
+            }
+            if (!smallBoxPresent)
+            {
+                GameObject.Instantiate(Resources.Load("10_PREFABS/SmallBox"), BoxBehaviour.smallBoxPosition, new Quaternion());
+            }
+            if (!mediumBoxPresent)
+            {
+                GameObject.Instantiate(Resources.Load("10_PREFABS/MediumBox"), BoxBehaviour.mediumBoxPosition, new Quaternion());
+            }
+            if (!bigBoxPresent)
+            {
+                GameObject.Instantiate(Resources.Load("10_PREFABS/BigBox"), BoxBehaviour.bigBoxPosition, new Quaternion());
+            }
+        }
+    }
+
+    void tryThrowingToChimney()
+    {
+        GameObject fire = GameObject.FindGameObjectWithTag("Fire");
+        ActionnableBehaviour fireBehaviour = fire.GetComponent<ActionnableBehaviour>();
+        if (fireBehaviour != null && fireBehaviour.playerInReach)
+        {
+            Debug.Log("in reach");
+            if (carriedToy != null)
+            {
+                Destroy(carriedToy);
+                carriedToy = null;
+                takingObject = false;
+            }
+            if (carriedBox != null)
+            {
+                Destroy(carriedBox);
+                carriedBox = null;
+                takingObject = false;
             }
         }
     }
