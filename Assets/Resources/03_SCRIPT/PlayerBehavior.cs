@@ -9,8 +9,7 @@ public class PlayerBehavior : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-		
-            
+        animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -35,6 +34,7 @@ public class PlayerBehavior : MonoBehaviour
     bool takingObject = false;
     GameObject carriedToy = null;
     GameObject carriedBox = null;
+    Animator animator = null;
 
     void move()
     {
@@ -42,6 +42,10 @@ public class PlayerBehavior : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
         if (moveHorizontal != 0 || moveVertical != 0)
         {
+            if (animator != null)
+            {
+                animator.SetTrigger("CharacterMoving");
+            }
             if (moveHorizontal != 0 && moveVertical != 0)
             {
                 moveHorizontal *= Mathf.Sqrt(2) / 2;
@@ -51,6 +55,9 @@ public class PlayerBehavior : MonoBehaviour
 
             Vector2 moveVector = new Vector2(moveHorizontal * deltaTime * speed, moveVertical * deltaTime * speed);
             gameObject.transform.Translate(moveVector, Space.World);
+        } else if (animator != null)
+        {
+            animator.SetTrigger("CharacterIdle");
         }
     }
 
