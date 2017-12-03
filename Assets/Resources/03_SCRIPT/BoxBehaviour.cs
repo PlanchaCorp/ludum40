@@ -52,6 +52,7 @@ public class BoxBehaviour : MonoBehaviour {
     }
 
     GameObject animation = null;
+    public Toy toy = null;
     public int size = 0;
     public bool isClosed = false;
     public bool isClosing = false;
@@ -63,6 +64,7 @@ public class BoxBehaviour : MonoBehaviour {
 
     public void packBox()
     {
+        isClosing = true;
         float delay = 0;
         switch (size)
         {
@@ -114,6 +116,7 @@ public class BoxBehaviour : MonoBehaviour {
         {
             animation.GetComponent<Renderer>().enabled = false;
         }
+        isClosing = false;
         closeOrOpenBox(true);
     }
 }
