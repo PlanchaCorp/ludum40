@@ -20,6 +20,12 @@ public class BoxBehaviour : MonoBehaviour {
             size = 3;
             bigBoxPosition = transform.position;
         }
+        Transform animationTransform = gameObject.transform.Find("BoxAnimation");
+        if (animationTransform != null)
+        {
+            animation = animationTransform.gameObject;
+            animation.GetComponent<Renderer>().enabled = false;
+        }
     }
 	
 	// Update is called once per frame
@@ -45,6 +51,8 @@ public class BoxBehaviour : MonoBehaviour {
         }
     }
 
+    GameObject animation = null;
+    public Toy toy = null;
     public int size = 0;
     public bool isClosed = false;
     public bool isClosing = false;
@@ -63,11 +71,15 @@ public class BoxBehaviour : MonoBehaviour {
                 delay = 1;
                 break;
             case 2:
-                delay = 2;
+                delay = 2.25f;
                 break;
             case 3:
-                delay = 3;
+                delay = 4;
                 break;
+        }
+        if (animation != null)
+        {
+            animation.GetComponent<Renderer>().enabled = true;
         }
         StartCoroutine(closeBoxAfterDelay(delay));
     }
@@ -99,6 +111,10 @@ public class BoxBehaviour : MonoBehaviour {
     IEnumerator closeBoxAfterDelay(float time)
     {
         yield return new WaitForSeconds(time);
+        if (animation != null)
+        {
+            animation.GetComponent<Renderer>().enabled = false;
+        }
         closeOrOpenBox(true);
     }
 }

@@ -68,6 +68,7 @@ public class PlayerBehavior : MonoBehaviour
                 carriedToy = toy;
             }
         }
+        Debug.Log(carriedToy);
         if (carriedToy != null && !takingObject)
         {
             ToyBehaviour toyBehaviour = carriedToy.GetComponent<ToyBehaviour>();
@@ -92,11 +93,15 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (!boxBehavior.isClosed && !boxBehavior.isClosing && takingObject && carriedToy != null)
                 {
-                    boxBehavior.packBox();
-                    //boxBehavior.closeOrOpenBox(true);
-                    takingObject = false;
-                    Destroy(carriedToy);
-                    carriedToy = null;
+                    Toy toy = carriedToy.GetComponent<ToyBehaviour>().toy;
+                    if (toy.size == boxBehavior.size)
+                    {
+                        boxBehavior.toy = toy;
+                        boxBehavior.packBox();
+                        takingObject = false;
+                        Destroy(carriedToy);
+                        carriedToy = null;
+                    }
                 } else if (boxBehavior.isClosed && !takingObject)
                 {
                     takingObject = true;
