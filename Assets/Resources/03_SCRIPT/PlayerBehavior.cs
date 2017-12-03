@@ -94,7 +94,6 @@ public class PlayerBehavior : MonoBehaviour
                 if (!boxBehavior.isClosed && !boxBehavior.isClosing && takingObject && carriedToy != null)
                 {
                     boxBehavior.packBox();
-                    //boxBehavior.closeOrOpenBox(true);
                     takingObject = false;
                     Destroy(carriedToy);
                     carriedToy = null;

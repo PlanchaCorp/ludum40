@@ -70,10 +70,10 @@ public class BoxBehaviour : MonoBehaviour {
                 delay = 1;
                 break;
             case 2:
-                delay = 2;
+                delay = 2.25f;
                 break;
             case 3:
-                delay = 3;
+                delay = 4;
                 break;
         }
         if (animation != null)
