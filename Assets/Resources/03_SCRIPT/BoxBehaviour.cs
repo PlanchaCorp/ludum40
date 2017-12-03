@@ -64,6 +64,7 @@ public class BoxBehaviour : MonoBehaviour {
 
     public void packBox()
     {
+        isClosing = true;
         float delay = 0;
         switch (size)
         {
@@ -115,6 +116,7 @@ public class BoxBehaviour : MonoBehaviour {
         {
             animation.GetComponent<Renderer>().enabled = false;
         }
+        isClosing = false;
         closeOrOpenBox(true);
     }
 }
