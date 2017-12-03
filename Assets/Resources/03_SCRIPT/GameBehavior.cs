@@ -11,10 +11,13 @@ public class GameBehavior : MonoBehaviour {
 	void Start () {
         ToyList = new List<Toy>
         {
-            new Toy("Croque monsieur","this sandwish is already bitten",1,"toy_croq"),
-            new Toy("Wooden horse","fun toy !",3,"toy_horse"),
-            new Toy("mommy's duck","how did this arrived here",2,"toy_momysduck"),
-            new Toy("Dovahkin","FUS ROH DAH",2,"dovahkin")
+            new Toy("Croque monsieur","It's already bitten", 1, "toy_croq"),
+            new Toy("Spinning top","Make it spin fast !", 1, "toupis"),
+            new Toy("Bear","So cute !", 1, "ours"),
+            new Toy("Console","Let's have a good time", 2, "console"),
+            new Toy("Mommy's duck","How did this arrive here ?", 2, "toy_momysduck"),
+            new Toy("Dovahkin","Fus Roh Dah !", 2, "dovahkin"),
+            new Toy("Wooden horse","Wanna go for a ride ?", 3, "toy_horse")
         };
         InvokeRepeating("CreateToy", 0.0f, 2.5f);
     }
