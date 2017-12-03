@@ -40,7 +40,7 @@ public class GameBehavior : MonoBehaviour {
             Toy toy = ToyList[index];
             toyObject.GetComponent<ToyBehaviour>().toy = toy;
             toyObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/" + toy.spriteName);
-                toyObject.GetComponent<SpriteRenderer>().transform.localScale.Set(0.7F, 0.7F, 1);
+          //toyObject.GetComponent<SpriteRenderer>().transform.localScale.Set(0.7F, 0.7F, 1);
         }
     }
     }
