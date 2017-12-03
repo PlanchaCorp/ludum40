@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameBehavior : MonoBehaviour {
 
+    public int maxSpawnbound = 8;
+    public int spawnrate = 3;
     // Use this for initialization
     public List<Toy> ToyList;
 	void Start () {
@@ -14,7 +16,7 @@ public class GameBehavior : MonoBehaviour {
             new Toy("mommy's duck","how did this arrived here",2,"toy_momysduck"),
             new Toy("Dovahkin","FUS ROH DAH",2,"dovahkin")
         };
-        InvokeRepeating("CreateToy", 2.0f, 3.0f);
+        InvokeRepeating("CreateToy", 0.0f, 3.5f);
     }
 	
 	// Update is called once per frame
@@ -22,17 +24,25 @@ public class GameBehavior : MonoBehaviour {
       
     }
 
+    private int GetToyOnBelt()
+    {
+        GameObject belt = gameObject.transform.Find("belt").gameObject;
+       return belt.transform.childCount;
+    }
 
     void CreateToy()
     {
-       int index =(int) Mathf.Floor( Random.Range(0, ToyList.Count));
-
-        GameObject belt = gameObject.transform.Find("belt").gameObject;
-        GameObject toyObject = GameObject.Instantiate(Resources.Load("10_PREFABS/toyGeneric"), belt.transform) as GameObject;
-        Toy toy = ToyList[index];
-        toyObject.GetComponent<ToyBehaviour>().toy = toy;
-        toyObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/"+ toy.spriteName);
-
+        if (GetToyOnBelt() <= maxSpawnbound) { 
+        if (Mathf.Floor(Random.Range(0, spawnrate)) == 0) {
+            int index = (int)Mathf.Floor(Random.Range(0, ToyList.Count));
+            GameObject belt = gameObject.transform.Find("belt").gameObject;
+            GameObject toyObject = GameObject.Instantiate(Resources.Load("10_PREFABS/toyGeneric"), belt.transform) as GameObject;
+            Toy toy = ToyList[index];
+            toyObject.GetComponent<ToyBehaviour>().toy = toy;
+            toyObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/" + toy.spriteName);
+                toyObject.GetComponent<SpriteRenderer>().transform.localScale.Set(0.7F, 0.7F, 1);
+        }
+    }
     }
 
 

@@ -39,7 +39,7 @@ public class ToyBehaviour : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         if (!takenByPlayer)
         {
             slide();
@@ -82,10 +82,21 @@ public class ToyBehaviour : MonoBehaviour {
     int collidingObjects = 0;
     public int playerInReach = 0;
     public bool takenByPlayer = false;
+    public RaycastHit2D raycast;
     
     void slide()
     {
-        if (collidingObjects == 0)
+        raycast = Physics2D.Raycast(this.transform.Find("raycastStart").gameObject.transform.position, Vector2.left, 1.3f);
+        
+             if (raycast.collider)
+        {
+            Debug.Log(raycast.collider);
+        }
+        if (raycast.collider.name == "wall" || raycast.collider.tag == "toy")
+        {
+
+        }
+        else
         {
             transform.Translate(Vector2.left * Time.deltaTime * speed);
         }
