@@ -12,6 +12,10 @@ TagManager:
   - box
   - wall
   - Sleigh
+  - Rope
+  - Chimney
+  - Fire
+  - BoxAnimation
   layers:
   - Default
   - TransparentFX

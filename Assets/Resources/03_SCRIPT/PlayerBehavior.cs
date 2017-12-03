@@ -68,6 +68,7 @@ public class PlayerBehavior : MonoBehaviour
                 carriedToy = toy;
             }
         }
+        Debug.Log(carriedToy);
         if (carriedToy != null && !takingObject)
         {
             ToyBehaviour toyBehaviour = carriedToy.GetComponent<ToyBehaviour>();
