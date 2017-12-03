@@ -12,9 +12,12 @@ public class ScriptMenuUI : MonoBehaviour
     public void loadScene(string nameScene)
     {
         SceneManager.LoadScene(nameScene);
+        Debug.Log("LoadScene");
     }
     public void quit()
     {
+        
         Application.Quit();
+        Debug.Log("Quit");
     }
 }
