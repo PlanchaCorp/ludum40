@@ -27,6 +27,11 @@ public class ToyBehaviour : MonoBehaviour {
         popInfo.transform.Find("txt_size").gameObject.GetComponent < TextMesh>().text = toy.GetLabelSize();
         popInfo.transform.Find("txt_description").gameObject.GetComponent<TextMesh>().text = toy.description;
         popInfo.SetActive(true);
+        SpriteRenderer sr = popInfo.transform.Find("small_image").gameObject.GetComponent<SpriteRenderer>();
+        sr.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+        sr.sprite = Resources.Load<Sprite>("09_TEXTURE/" + toy.spriteName);
+        
+      
     }
     private void OnMouseExit()
     {
