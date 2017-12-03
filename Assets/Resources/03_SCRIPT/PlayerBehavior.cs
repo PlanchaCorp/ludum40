@@ -24,6 +24,7 @@ public class PlayerBehavior : MonoBehaviour
             } else
             {
                 tryFeedingSleigh();
+                tryThrowingToChimney();
             }
             tryInteractingWithBox();
             tryRope();
@@ -120,7 +121,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         GameObject rope = GameObject.FindGameObjectWithTag("Rope");
         ActionnableBehaviour ropeBehaviour = rope.GetComponent<ActionnableBehaviour>();
-        if (ropeBehaviour != null && ropeBehaviour.playerInReach)
+        if (carriedBox == null && ropeBehaviour != null && ropeBehaviour.playerInReach)
         {
             bool smallBoxPresent = false, mediumBoxPresent = false, bigBoxPresent = false;
             GameObject[] boxes = GameObject.FindGameObjectsWithTag("box");
@@ -154,6 +155,28 @@ public class PlayerBehavior : MonoBehaviour
             if (!bigBoxPresent)
             {
                 GameObject.Instantiate(Resources.Load("10_PREFABS/BigBox"), BoxBehaviour.bigBoxPosition, new Quaternion());
+            }
+        }
+    }
+
+    void tryThrowingToChimney()
+    {
+        GameObject fire = GameObject.FindGameObjectWithTag("Fire");
+        ActionnableBehaviour fireBehaviour = fire.GetComponent<ActionnableBehaviour>();
+        if (fireBehaviour != null && fireBehaviour.playerInReach)
+        {
+            Debug.Log("in reach");
+            if (carriedToy != null)
+            {
+                Destroy(carriedToy);
+                carriedToy = null;
+                takingObject = false;
+            }
+            if (carriedBox != null)
+            {
+                Destroy(carriedBox);
+                carriedBox = null;
+                takingObject = false;
             }
         }
     }
