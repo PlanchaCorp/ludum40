@@ -21,21 +21,33 @@ public class ToyBehaviour : MonoBehaviour {
 
 	}
 
-    private void OnMouseOver()
+
+    public void SetInfobulle()
     {
         popInfo.transform.Find("txt_title").gameObject.GetComponent<TextMesh>().text = toy.name;
-        popInfo.transform.Find("txt_size").gameObject.GetComponent < TextMesh>().text = toy.GetLabelSize();
+        popInfo.transform.Find("txt_size").gameObject.GetComponent<TextMesh>().text = toy.GetLabelSize();
         popInfo.transform.Find("txt_description").gameObject.GetComponent<TextMesh>().text = toy.description;
-        popInfo.SetActive(true);
         SpriteRenderer sr = popInfo.transform.Find("small_image").gameObject.GetComponent<SpriteRenderer>();
         sr.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
         sr.sprite = Resources.Load<Sprite>("09_TEXTURE/" + toy.spriteName);
-        
-      
     }
-    private void OnMouseExit()
+
+    public void DisplayInfo()
     {
-        popInfo.SetActive(false);
+        if (!popInfo.activeSelf)
+        {
+            popInfo.SetActive(true);
+            SetInfobulle();
+        }
+       
+       
+    }
+    public void HideInfo()
+    {
+        if (popInfo.activeSelf)
+        {
+            popInfo.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -47,9 +59,24 @@ public class ToyBehaviour : MonoBehaviour {
         {
             positionOverPlayer();
         }
-    }
-    
 
+        infoBulleBehaviour();
+    }
+
+    public bool displayInfoEnabled = false;
+
+
+    public void infoBulleBehaviour()
+    {
+        if (displayInfoEnabled)
+        {
+            DisplayInfo();
+        }
+        else
+        {
+            HideInfo();
+        }
+    }
 
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -59,6 +86,11 @@ public class ToyBehaviour : MonoBehaviour {
             collidingObjects++;
         } else if (collider.tag == "Player" || collider.tag == "PlayerHand")
         {
+            if (!takenByPlayer)
+            {
+                displayInfoEnabled = true;
+            }
+            
             playerInReach++;
         }
     }
@@ -74,7 +106,12 @@ public class ToyBehaviour : MonoBehaviour {
         }
         else if (collider.tag == "Player" || collider.tag == "PlayerHand")
         {
+            displayInfoEnabled = false;
             playerInReach--;
+        }
+        if (takenByPlayer)
+        {
+            HideInfo();
         }
     }
 
@@ -105,6 +142,7 @@ public class ToyBehaviour : MonoBehaviour {
     void positionOverPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        gameObject.transform.position = player.transform.position;
+       
+        gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -5f);
     }
 }
