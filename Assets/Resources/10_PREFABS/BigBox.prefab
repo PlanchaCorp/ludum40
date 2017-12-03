@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212537135887838316}
   - component: {fileID: 95899941747971576}
   m_Layer: 0
-  m_Name: BigBoxAnim
+  m_Name: BoxAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
