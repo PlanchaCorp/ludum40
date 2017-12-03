@@ -72,9 +72,11 @@ public class PlayerBehavior : MonoBehaviour
         if (carriedToy != null && !takingObject)
         {
             ToyBehaviour toyBehaviour = carriedToy.GetComponent<ToyBehaviour>();
+            toyBehaviour.displayInfoEnabled = false;
             if (toyBehaviour.playerInReach > 0)
             {
                 toyBehaviour.takenByPlayer = true;
+               
                 takingObject = true;
             } else
             {
