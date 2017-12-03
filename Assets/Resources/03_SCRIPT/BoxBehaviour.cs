@@ -52,6 +52,7 @@ public class BoxBehaviour : MonoBehaviour {
     }
 
     GameObject animation = null;
+    public Toy toy = null;
     public int size = 0;
     public bool isClosed = false;
     public bool isClosing = false;
