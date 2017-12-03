@@ -86,7 +86,7 @@ public class PlayerBehavior : MonoBehaviour
         GameObject[] boxes = GameObject.FindGameObjectsWithTag("box");
         foreach (GameObject box in boxes)
         {
-            BoxBehavior boxBehavior = box.GetComponent<BoxBehavior>();
+            BoxBehaviour boxBehavior = box.GetComponent<BoxBehaviour>();
             if (boxBehavior != null && boxBehavior.playerInReach)
             {
                 if (!boxBehavior.isClosed && takingObject && carriedToy != null)
@@ -122,9 +122,38 @@ public class PlayerBehavior : MonoBehaviour
         ActionnableBehaviour ropeBehaviour = rope.GetComponent<ActionnableBehaviour>();
         if (ropeBehaviour != null && ropeBehaviour.playerInReach)
         {
-            Debug.Log("Rope !");
-            if (GameObject.FindGameObjectsWithTag("box").Length == 0)
+            bool smallBoxPresent = false, mediumBoxPresent = false, bigBoxPresent = false;
+            GameObject[] boxes = GameObject.FindGameObjectsWithTag("box");
+            foreach(GameObject box in boxes)
             {
+                BoxBehaviour boxBehaviour = box.GetComponent<BoxBehaviour>();
+                if (boxBehaviour != null)
+                {
+                    switch (boxBehaviour.size)
+                    {
+                        case 1:
+                            smallBoxPresent = true;
+                            break;
+                        case 2:
+                            mediumBoxPresent = true;
+                            break;
+                        case 3:
+                            bigBoxPresent = true;
+                            break;
+                    }
+                }
+            }
+            if (!smallBoxPresent)
+            {
+                GameObject.Instantiate(Resources.Load("10_PREFABS/SmallBox"), BoxBehaviour.smallBoxPosition, new Quaternion());
+            }
+            if (!mediumBoxPresent)
+            {
+                GameObject.Instantiate(Resources.Load("10_PREFABS/MediumBox"), BoxBehaviour.mediumBoxPosition, new Quaternion());
+            }
+            if (!bigBoxPresent)
+            {
+                GameObject.Instantiate(Resources.Load("10_PREFABS/BigBox"), BoxBehaviour.bigBoxPosition, new Quaternion());
             }
         }
     }

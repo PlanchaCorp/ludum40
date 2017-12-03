@@ -9,6 +9,9 @@ TagManager:
   - ui_value
   - Conveyor
   - PlayerHand
+  - box
+  - wall
+  - Sleigh
   layers:
   - Default
   - TransparentFX

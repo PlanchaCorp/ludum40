@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxBehavior : MonoBehaviour {
+public class BoxBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -10,12 +10,15 @@ public class BoxBehavior : MonoBehaviour {
         if (spriteName.Contains("small"))
         {
             size = 1;
+            smallBoxPosition = transform.position;
         } else if (spriteName.Contains("medium"))
         {
             size = 2;
+            mediumBoxPosition = transform.position;
         } else if (spriteName.Contains("big"))
         {
             size = 3;
+            bigBoxPosition = transform.position;
         }
     }
 	
@@ -46,6 +49,9 @@ public class BoxBehavior : MonoBehaviour {
     public bool isClosed = false;
     public bool playerInReach = false;
     public bool takenByPlayer = false;
+    static public Vector3 smallBoxPosition;
+    static public Vector3 mediumBoxPosition;
+    static public Vector3 bigBoxPosition;
 
     public void closeOrOpenBox(bool closing)
     {
