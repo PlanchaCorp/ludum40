@@ -51,7 +51,7 @@ public class GameBehavior : MonoBehaviour
     }
 
 
-    private int nextUpdate = 7;
+    private int nextUpdate = 2;
     // Update is called once per frame
     void Update()
     {
@@ -109,7 +109,7 @@ public class GameBehavior : MonoBehaviour
     int index = 0;
     void CreateToy()
     {
-        if (index > 7)
+        if (index > 6)
         {
             index = 0;
         }

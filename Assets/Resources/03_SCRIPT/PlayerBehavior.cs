@@ -152,6 +152,11 @@ public class PlayerBehavior : MonoBehaviour
         ActionnableBehaviour ropeBehaviour = rope.GetComponent<ActionnableBehaviour>();
         if (carriedBox == null && ropeBehaviour != null && ropeBehaviour.playerInReach)
         {
+            AudioSource audio = rope.GetComponent<AudioSource>();
+            if (audio != null)
+            {
+                audio.Play();
+            }
             bool smallBoxPresent = false, mediumBoxPresent = false, bigBoxPresent = false;
             GameObject[] boxes = GameObject.FindGameObjectsWithTag("box");
             foreach(GameObject box in boxes)
