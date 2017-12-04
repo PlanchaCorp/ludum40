@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BoxBehaviour : MonoBehaviour {
 
-	// Use this for initialization
+    // Use this for initialization
+
+    //public int size;
 	void Start () {
         string spriteName = GetComponent<SpriteRenderer>().sprite.name;
         if (spriteName.Contains("small"))

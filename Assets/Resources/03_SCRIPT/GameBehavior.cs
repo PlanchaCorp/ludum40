@@ -2,50 +2,131 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBehavior : MonoBehaviour {
+public class GameBehavior : MonoBehaviour
+{
 
-    public int maxSpawnbound = 8;
-    public int spawnrate = 3;
+    public int maxSpawnbound = 10;
+    public int spawnrate = 2;
+
+    public int spawn = 10;
+    public float speed = 2.1f;
     // Use this for initialization
-    public List<Toy> ToyList;
-	void Start () {
-        ToyList = new List<Toy>
+    public List<Toy> smallToyPool;
+    public List<Toy> mediumToyPool;
+    public List<Toy> bigToyPool;
+    public List<Toy> undesirableToyPool;
+
+    public List<Toy>[] pools;
+    void Start()
+    {
+
+
+        smallToyPool = new List<Toy>
         {
-            new Toy("Croque monsieur","It's already bitten", 1, "toy_croq"),
-            new Toy("Spinning top","Make it spin fast !", 1, "toupis"),
-            new Toy("Bear","So cute !", 1, "ours"),
-            new Toy("Console","Let's have a good time", 2, "console"),
-            new Toy("Mommy's duck","How did this arrive here ?", 2, "toy_momysduck"),
-            new Toy("Dovahkin","Fus Roh Dah !", 2, "dovahkin"),
-            new Toy("Wooden horse","Wanna go for a ride ?", 3, "toy_horse")
+           new Toy("Spinning top","Make it spin fast !", 1, "toupis"),
+           new Toy("Bear","So cute !", 1, "ours"),
         };
-        InvokeRepeating("CreateToy", 0.0f, 2.5f);
-    }
-	
-	// Update is called once per frame
-	void Update () {
+        mediumToyPool = new List<Toy>
+        {
+
+           new Toy("Console","Let's have a good time", 2, "console"),
+           new Toy("Dovahkin","Fus Roh Dah !", 2, "dovahkin")
+        };
+        bigToyPool = new List<Toy>
+        {
+           new Toy("Wooden horse","Wanna go for a ride ?", 3, "toy_horse"),
+           new Toy("Depressed elf","Send me far away from here", 3, "depressed_elf")
+        };
+        undesirableToyPool = new List<Toy>
+        {
+           new Toy("Croque monsieur","It's already bitten", -1, "toy_croq"),
+           new Toy("Mommy's duck","How did this arrive here ?", -1, "toy_momysduck"),
+        };
+        pools = new List<Toy>[] { smallToyPool, mediumToyPool, bigToyPool, undesirableToyPool };
+
       
+    }
+
+
+    private int nextUpdate = 10;
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.time >= nextUpdate)
+        {
+            Debug.Log("update");
+            CreateToy();
+
+            nextUpdate = Mathf.FloorToInt(Time.time) + spawn;
+           
+           
+        }
+
+    }
+
+    public void increaseDificulty()
+    {
+        spawn -= 2;
+        ToyBehaviour.speed += 0.3f;
     }
 
     private int GetToyOnBelt()
     {
         GameObject belt = gameObject.transform.Find("belt").gameObject;
-       return belt.transform.childCount;
+        return belt.transform.childCount;
+    }
+    private int[] generateSequence()
+    {
+        Random rng = new Random();
+        int[] sequence = new int[] { 0, 1, 2, 3 };
+        int n = sequence.Length;
+        while (n > 1)
+        {
+            n--;
+            int k = Mathf.FloorToInt(Random.value * n);
+            int val = sequence[k];
+            sequence[k] = sequence[n];
+            sequence[n] = val;
+
+        }
+        string debug = "";
+        foreach (int i in sequence)
+        {
+            debug += i + ";";
+        }
+        Debug.Log("sequence =" + debug);
+        return sequence;
     }
 
+    int[] sequence = new int[4];
+    int index = 0;
     void CreateToy()
     {
-        if (GetToyOnBelt() <= maxSpawnbound) { 
-        if (Mathf.Floor(Random.Range(0, spawnrate)) == 0) {
-            int index = (int)Mathf.Floor(Random.Range(0, ToyList.Count));
+        if (index > 3)
+        {
+            index = 0;
+        }
+        
+        if (index == 0)
+        {
+            sequence = generateSequence();
+        }
+
+        if (GetToyOnBelt() <= maxSpawnbound)
+        {
+            List<Toy> pool = pools[sequence[index]];
+            Debug.Log(sequence[index]);
+            int i = (int)Mathf.Floor(Random.Range(0, pool.Count));
+           
             GameObject belt = gameObject.transform.Find("belt").gameObject;
             GameObject toyObject = GameObject.Instantiate(Resources.Load("10_PREFABS/toyGeneric"), belt.transform) as GameObject;
-            Toy toy = ToyList[index];
+            Toy toy = pool[i];
             toyObject.GetComponent<ToyBehaviour>().toy = toy;
             toyObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/" + toy.spriteName);
-          toyObject.GetComponent<SpriteRenderer>().transform.localScale.Set(0.7F, 0.7F, 1);
+            toyObject.GetComponent<SpriteRenderer>().transform.localScale.Set(0.7F, 0.7F, 1);
+            index++;
+            
         }
-    }
     }
 
 
