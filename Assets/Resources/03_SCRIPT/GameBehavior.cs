@@ -42,7 +42,6 @@ public class GameBehavior : MonoBehaviour
         undesirableToyPool = new List<Toy>
         {
            new Toy("Croque monsieur","It's already bitten", 1, "toy_croq",true),
-           new Toy("Mommy's duck","How did this arrive here ?", 2, "toy_momysduck",true),
         };
         pools = new List<Toy>[] { smallToyPool, mediumToyPool, bigToyPool, undesirableToyPool };
 
@@ -84,7 +83,7 @@ public class GameBehavior : MonoBehaviour
     private int[] generateSequence()
     {
         Random rng = new Random();
-        int[] sequence = new int[] { 0, 1, 2, 3 };
+        int[] sequence = new int[] { 0, 0, 1, 1, 2, 2, 3 };
         int n = sequence.Length;
         while (n > 1)
         {
@@ -108,7 +107,7 @@ public class GameBehavior : MonoBehaviour
     int index = 0;
     void CreateToy()
     {
-        if (index > 3)
+        if (index > 7)
         {
             index = 0;
         }
@@ -128,10 +127,6 @@ public class GameBehavior : MonoBehaviour
             GameObject belt = gameObject.transform.Find("belt").gameObject;
             GameObject toyObject = GameObject.Instantiate(Resources.Load("10_PREFABS/toyGeneric"), belt.transform) as GameObject;
             Toy toy = pool[i];
-            if( Mathf.FloorToInt(Random.value * 5) == 0)
-            {
-                toy.broken = true;
-            }
             toyObject.GetComponent<ToyBehaviour>().toy = toy;
             toyObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/" + toy.spriteName);
             toyObject.GetComponent<SpriteRenderer>().transform.localScale. Set(0.7F, 0.7F, 1);
