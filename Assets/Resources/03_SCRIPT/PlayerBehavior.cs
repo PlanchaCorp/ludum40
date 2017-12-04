@@ -44,7 +44,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             if (animator != null)
             {
-                animator.SetTrigger("CharacterMoving");
+                animator.SetBool("move", false);
             }
             if (moveHorizontal != 0 && moveVertical != 0)
             {
@@ -57,7 +57,7 @@ public class PlayerBehavior : MonoBehaviour
             gameObject.transform.Translate(moveVector, Space.World);
         } else if (animator != null)
         {
-            animator.SetTrigger("CharacterIdle");
+            animator.SetBool("move", true);
         }
     }
 
