@@ -121,7 +121,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4359059396074854, guid: c2cf360baecb0914f820cba430b5c6cf, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.6
+      value: -7.09
       objectReference: {fileID: 0}
     - target: {fileID: 4359059396074854, guid: c2cf360baecb0914f820cba430b5c6cf, type: 2}
       propertyPath: m_LocalPosition.y
@@ -238,7 +238,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4848048213388192, guid: 4722139c32562d545b1c31d134f2ab7e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.6
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 4848048213388192, guid: 4722139c32562d545b1c31d134f2ab7e, type: 2}
       propertyPath: m_LocalPosition.y
@@ -355,7 +355,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4247204938693708, guid: 65e9d7ac2dc35dd4fa772510da4dc338, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -22.66
+      value: -19.41
       objectReference: {fileID: 0}
     - target: {fileID: 4247204938693708, guid: 65e9d7ac2dc35dd4fa772510da4dc338, type: 2}
       propertyPath: m_LocalPosition.y
@@ -550,7 +550,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 115.9
   orthographic: 1
   orthographic size: 12.782504
   m_Depth: -1
@@ -575,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 670508013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.4, y: 1.2, z: -10}
-  m_LocalScale: {x: 1.8624998, y: 1, z: 1}
+  m_LocalScale: {x: 5.820328, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -589,7 +589,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4760180326781766, guid: a99d02d8684cdc342b14fd6e03e04ae7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 17.230295
+      value: 15.04
       objectReference: {fileID: 0}
     - target: {fileID: 4760180326781766, guid: a99d02d8684cdc342b14fd6e03e04ae7, type: 2}
       propertyPath: m_LocalPosition.y
@@ -779,7 +779,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4336232481426958, guid: e55b121080411184ba692e17af70bfc3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -22.6
+      value: -19.42
       objectReference: {fileID: 0}
     - target: {fileID: 4336232481426958, guid: e55b121080411184ba692e17af70bfc3, type: 2}
       propertyPath: m_LocalPosition.y

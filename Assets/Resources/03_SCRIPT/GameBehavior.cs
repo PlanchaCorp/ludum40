@@ -19,8 +19,6 @@ public class GameBehavior : MonoBehaviour
     public List<Toy>[] pools;
     void Start()
     {
-
-
         smallToyPool = new List<Toy>
         {
            new Toy("Spinning top","Make it spin fast !", 1, "toupis",false),
