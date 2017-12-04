@@ -134,6 +134,11 @@ public class PlayerBehavior : MonoBehaviour
             } else
             {
                 score.incrementScore(box.size * 100);
+                AudioSource audio = sleigh.GetComponent<AudioSource>();
+                if (audio != null)
+                {
+                    audio.Play();
+                }
             }
             takingObject = false;
             Destroy(carriedBox);
@@ -189,6 +194,12 @@ public class PlayerBehavior : MonoBehaviour
         ActionnableBehaviour fireBehaviour = fire.GetComponent<ActionnableBehaviour>();
         if (fireBehaviour != null && fireBehaviour.playerInReach)
         {
+            Debug.Log("chimney");
+            AudioSource audio = fire.GetComponent<AudioSource>();
+            if (audio != null && (carriedToy != null || carriedBox != null))
+            {
+                audio.Play();
+            }
             if (carriedToy != null)
             {
                 Destroy(carriedToy);
