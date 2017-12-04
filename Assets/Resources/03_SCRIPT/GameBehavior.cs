@@ -28,7 +28,7 @@ public class GameBehavior : MonoBehaviour
         {
 
            new Toy("Console","Let's have a good time", 2, "console",false),
-           new Toy("Dovahkin","Fus Roh Dah !", 2, "dovahkin",false),
+           new Toy("Dovahkiin","Fus Roh Dah !", 2, "dovahkin",false),
            new Toy("Affro duck", "Stylish !", 2, "toy_momysduck",false)
         };
         bigToyPool = new List<Toy>
@@ -41,6 +41,9 @@ public class GameBehavior : MonoBehaviour
            new Toy("Croque monsieur","It's already bitten", 1, "toy_croq",true),
            new Toy("Wooden horse","Two legs are broken", 3, "toy_horse_broken",true),
            new Toy("Bear","I think something is missing", 1, "ours_broken",true),
+           new Toy("Spinning top","It won't be spinning anymore", 1, "toupis_broken",true),
+           new Toy("Console","This console is defective", 2, "console_broken",true),
+           new Toy("Dovahkiin","Is it a cow?", 2, "dovahkin_broken",true)
         };
         pools = new List<Toy>[] { smallToyPool, mediumToyPool, bigToyPool, undesirableToyPool };
 
