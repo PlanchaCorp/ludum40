@@ -123,7 +123,7 @@ public class ToyBehaviour : MonoBehaviour {
     int collidingObjects = 0;
     public int playerInReach = 0;
     public bool takenByPlayer = false;
-    public float raycastLen = 2.5f;
+    public float raycastLen = 3f;
     public RaycastHit2D raycast;
     
     void slide()

@@ -96,12 +96,6 @@ public class GameBehavior : MonoBehaviour
             sequence[n] = val;
 
         }
-        string debug = "";
-        foreach (int i in sequence)
-        {
-            debug += i + ";";
-        }
-        Debug.Log("sequence =" + debug);
         return sequence;
     }
 
