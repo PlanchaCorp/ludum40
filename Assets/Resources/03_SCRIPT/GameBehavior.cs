@@ -32,7 +32,7 @@ public class GameBehavior : MonoBehaviour
 
            new Toy("Console","Let's have a good time", 2, "console",false),
            new Toy("Dovahkin","Fus Roh Dah !", 2, "dovahkin",false),
-           new Toy("Affro duck", "Stylish !", 2, "toy_momysduck",true)
+           new Toy("Affro duck", "Stylish !", 2, "toy_momysduck",false)
         };
         bigToyPool = new List<Toy>
         {
@@ -134,7 +134,7 @@ public class GameBehavior : MonoBehaviour
             }
             toyObject.GetComponent<ToyBehaviour>().toy = toy;
             toyObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/" + toy.spriteName);
-            toyObject.GetComponent<SpriteRenderer>().transform.localScale.Set(0.7F, 0.7F, 1);
+            toyObject.GetComponent<SpriteRenderer>().transform.localScale. Set(0.7F, 0.7F, 1);
             index++;
             
         }
