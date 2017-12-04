@@ -126,6 +126,7 @@ public class PlayerBehavior : MonoBehaviour
         GameObject sleigh = GameObject.FindGameObjectWithTag("Sleigh");
         ActionnableBehaviour sleighBehaviour = sleigh.GetComponent<ActionnableBehaviour>();
         if (sleighBehaviour != null && sleighBehaviour.playerInReach && takingObject && carriedBox != null) {
+            GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBehaviour>().incrementScore(carriedBox.GetComponent<BoxBehaviour>().size);
             takingObject = false;
             Destroy(carriedBox);
             carriedBox = null;
