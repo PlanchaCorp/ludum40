@@ -23,24 +23,24 @@ public class GameBehavior : MonoBehaviour
 
         smallToyPool = new List<Toy>
         {
-           new Toy("Spinning top","Make it spin fast !", 1, "toupis"),
-           new Toy("Bear","So cute !", 1, "ours"),
+           new Toy("Spinning top","Make it spin fast !", 1, "toupis",false),
+           new Toy("Bear","So cute !", 1, "ours",false),
         };
         mediumToyPool = new List<Toy>
         {
 
-           new Toy("Console","Let's have a good time", 2, "console"),
-           new Toy("Dovahkin","Fus Roh Dah !", 2, "dovahkin")
+           new Toy("Console","Let's have a good time", 2, "console",false),
+           new Toy("Dovahkin","Fus Roh Dah !", 2, "dovahkin",false)
         };
         bigToyPool = new List<Toy>
         {
-           new Toy("Wooden horse","Wanna go for a ride ?", 3, "toy_horse"),
-           new Toy("Depressed elf","Send me far away from here", 3, "depressed_elf")
+           new Toy("Wooden horse","Wanna go for a ride ?", 3, "toy_horse",false),
+           new Toy("Depressed elf","Send me far away from here", 3, "depressed_elf",false)
         };
         undesirableToyPool = new List<Toy>
         {
-           new Toy("Croque monsieur","It's already bitten", -1, "toy_croq"),
-           new Toy("Mommy's duck","How did this arrive here ?", -1, "toy_momysduck"),
+           new Toy("Croque monsieur","It's already bitten", 0, "toy_croq",true),
+           new Toy("Mommy's duck","How did this arrive here ?", 1, "toy_momysduck",true),
         };
         pools = new List<Toy>[] { smallToyPool, mediumToyPool, bigToyPool, undesirableToyPool };
 
@@ -48,7 +48,7 @@ public class GameBehavior : MonoBehaviour
     }
 
 
-    private int nextUpdate = 10;
+    private int nextUpdate = 8;
     // Update is called once per frame
     void Update()
     {
@@ -114,6 +114,7 @@ public class GameBehavior : MonoBehaviour
 
         if (GetToyOnBelt() <= maxSpawnbound)
         {
+
             List<Toy> pool = pools[sequence[index]];
             Debug.Log(sequence[index]);
             int i = (int)Mathf.Floor(Random.Range(0, pool.Count));
@@ -121,6 +122,10 @@ public class GameBehavior : MonoBehaviour
             GameObject belt = gameObject.transform.Find("belt").gameObject;
             GameObject toyObject = GameObject.Instantiate(Resources.Load("10_PREFABS/toyGeneric"), belt.transform) as GameObject;
             Toy toy = pool[i];
+            if( Mathf.FloorToInt(Random.value * 5) == 0)
+            {
+                toy.broken = true;
+            }
             toyObject.GetComponent<ToyBehaviour>().toy = toy;
             toyObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("09_TEXTURE/" + toy.spriteName);
             toyObject.GetComponent<SpriteRenderer>().transform.localScale.Set(0.7F, 0.7F, 1);

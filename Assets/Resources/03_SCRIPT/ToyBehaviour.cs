@@ -27,6 +27,10 @@ public class ToyBehaviour : MonoBehaviour {
         popInfo.transform.Find("txt_title").gameObject.GetComponent<TextMesh>().text = toy.name;
         popInfo.transform.Find("txt_size").gameObject.GetComponent<TextMesh>().text = toy.GetLabelSize();
         popInfo.transform.Find("txt_description").gameObject.GetComponent<TextMesh>().text = toy.description;
+        if (toy.broken)
+        {
+            popInfo.transform.Find("txt_broken").gameObject.GetComponent<TextMesh>().text = "Broken";
+        }
         SpriteRenderer sr = popInfo.transform.Find("small_image").gameObject.GetComponent<SpriteRenderer>();
         sr.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
         sr.sprite = Resources.Load<Sprite>("09_TEXTURE/" + toy.spriteName);
@@ -119,7 +123,7 @@ public class ToyBehaviour : MonoBehaviour {
     int collidingObjects = 0;
     public int playerInReach = 0;
     public bool takenByPlayer = false;
-    public float raycastLen = 1.1f;
+    public float raycastLen = 1.9f;
     public RaycastHit2D raycast;
     
     void slide()
