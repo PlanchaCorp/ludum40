@@ -42,6 +42,8 @@ public class GameBehavior : MonoBehaviour
         undesirableToyPool = new List<Toy>
         {
            new Toy("Croque monsieur","It's already bitten", 1, "toy_croq",true),
+           new Toy("Wooden horse","Two legs are broken", 3, "toy_horse_broken",true),
+           new Toy("Bear","I think something is missing", 1, "ours_broken",true),
         };
         pools = new List<Toy>[] { smallToyPool, mediumToyPool, bigToyPool, undesirableToyPool };
 
