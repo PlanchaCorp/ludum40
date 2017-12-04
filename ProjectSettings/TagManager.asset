@@ -16,6 +16,7 @@ TagManager:
   - Chimney
   - Fire
   - BoxAnimation
+  - Score
   layers:
   - Default
   - TransparentFX
