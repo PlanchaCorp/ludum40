@@ -39,8 +39,8 @@ public class GameBehavior : MonoBehaviour
         };
         undesirableToyPool = new List<Toy>
         {
-           new Toy("Croque monsieur","It's already bitten", 0, "toy_croq",true),
-           new Toy("Mommy's duck","How did this arrive here ?", 1, "toy_momysduck",true),
+           new Toy("Croque monsieur","It's already bitten", 1, "toy_croq",true),
+           new Toy("Mommy's duck","How did this arrive here ?", 2, "toy_momysduck",true),
         };
         pools = new List<Toy>[] { smallToyPool, mediumToyPool, bigToyPool, undesirableToyPool };
 
