@@ -14,7 +14,7 @@ public class ScoreBehaviour : MonoBehaviour {
         TextMesh text = GetComponent<TextMesh>();
         if (text != null)
         {
-            text.text = score.ToString();
+            text.text = "Score : " + score;
         }
 	}
 
