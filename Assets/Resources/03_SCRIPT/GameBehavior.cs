@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameBehavior : MonoBehaviour
 {
@@ -128,6 +129,8 @@ public class GameBehavior : MonoBehaviour
             toyObject.GetComponent<SpriteRenderer>().transform.localScale. Set(0.7F, 0.7F, 1);
             index++;
             
+        } else {
+            SceneManager.LoadScene("MainGameOver",LoadSceneMode.Single);
         }
     }
 
