@@ -7,6 +7,7 @@ public class GameBehavior : MonoBehaviour
 
     public int maxSpawnbound = 10;
     public int spawnrate = 2;
+    public int toyCount = 0;
 
     public int spawn = 10;
     public float speed = 2.1f;
@@ -30,7 +31,8 @@ public class GameBehavior : MonoBehaviour
         {
 
            new Toy("Console","Let's have a good time", 2, "console",false),
-           new Toy("Dovahkin","Fus Roh Dah !", 2, "dovahkin",false)
+           new Toy("Dovahkin","Fus Roh Dah !", 2, "dovahkin",false),
+           new Toy("Affro duck", "Stylish !", 2, "toy_momysduck",true)
         };
         bigToyPool = new List<Toy>
         {
@@ -48,7 +50,7 @@ public class GameBehavior : MonoBehaviour
     }
 
 
-    private int nextUpdate = 8;
+    private int nextUpdate = 7;
     // Update is called once per frame
     void Update()
     {
@@ -58,15 +60,19 @@ public class GameBehavior : MonoBehaviour
             CreateToy();
 
             nextUpdate = Mathf.FloorToInt(Time.time) + spawn;
-           
-           
+
+            toyCount++;
+            if (toyCount == 2 || toyCount == 6 || toyCount == 10 || toyCount == 15 || toyCount == 20)
+            {
+                increaseDificulty();
+            }
         }
 
     }
 
     public void increaseDificulty()
     {
-        spawn -= 2;
+        spawn -= 1;
         ToyBehaviour.speed += 0.3f;
     }
 
