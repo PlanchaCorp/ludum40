@@ -64,7 +64,7 @@ public class GameBehavior : MonoBehaviour
             nextUpdate = Mathf.FloorToInt(Time.time) + spawn;
 
             toyCount++;
-            if (toyCount == 2 || toyCount == 6 || toyCount == 10 || toyCount == 15 || toyCount == 20)
+            if (toyCount == 2 || toyCount == 4 || toyCount == 6 || toyCount == 10 || toyCount == 15 || toyCount == 20 || toyCount == 30)
             {
                 increaseDificulty();
             }
@@ -75,7 +75,7 @@ public class GameBehavior : MonoBehaviour
     public void increaseDificulty()
     {
         spawn -= 1;
-        ToyBehaviour.speed += 0.3f;
+        ToyBehaviour.speed += 0.5f;
     }
 
     private int GetToyOnBelt()

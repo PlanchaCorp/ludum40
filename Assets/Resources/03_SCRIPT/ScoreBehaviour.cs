@@ -18,7 +18,7 @@ public class ScoreBehaviour : MonoBehaviour {
         }
 	}
 
-    public int score = 0;
+    public static int score = 0;
 
     public void incrementScore(int addition)
     {
