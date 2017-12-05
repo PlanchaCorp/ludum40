@@ -30,7 +30,7 @@ public class GameBehavior : MonoBehaviour
 
            new Toy("Console","Let's have a good time", 2, "console",false),
            new Toy("Dovahkiin","Fus Roh Dah !", 2, "dovahkin",false),
-           new Toy("Affro duck", "Stylish !", 2, "toy_momysduck",false)
+           new Toy("Afro duck", "Stylish !", 2, "toy_momysduck",false)
         };
         bigToyPool = new List<Toy>
         {
